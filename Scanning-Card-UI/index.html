@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Terminal Style Card - Sazzad</title>
+    <style>
+      /* ====== BASIC PAGE SETUP ====== */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #020617; /* dark navy/black */
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+      }
+
+      .sazzad-card-wrapper {
+        padding: 20px;
+      }
+
+      /* ====== CARD (TERMINAL STYLE) ====== */
+      .sazzad-card {
+        position: relative;
+        width: 320px;
+        height: 200px;
+        border-radius: 10px;
+        padding: 18px;
+        overflow: hidden;
+        color: #e5ffe5;
+        background: radial-gradient(circle at top left, #022c22, #020617 60%);
+        border: 1px solid rgba(34, 197, 94, 0.6);
+        box-shadow: 0 0 25px rgba(22, 163, 74, 0.4);
+      }
+
+      .sazzad-card::before {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        border-radius: 12px;
+        background: linear-gradient(
+          130deg,
+          rgba(34, 197, 94, 0.9),
+          transparent,
+          rgba(22, 163, 74, 0.6)
+        );
+        opacity: 0.3;
+        z-index: -1;
+      }
+
+      /* ====== ASCII OVERLAY ====== */
+      .sazzad-ascii-overlay {
+        position: absolute;
+        inset: 0;
+        padding: 8px;
+        font-family: "Courier New", monospace;
+        font-size: 9px;
+        line-height: 1.1;
+        color: rgba(74, 222, 128, 0.25); /* soft green */
+        white-space: pre;
+        pointer-events: none;
+        mix-blend-mode: screen;
+        opacity: 0.8;
+        animation: sazzad-ascii-flicker 1.4s infinite alternate;
+      }
+
+      @keyframes sazzad-ascii-flicker {
+        0% {
+          opacity: 0.25;
+          transform: translateY(0);
+        }
+        100% {
+          opacity: 0.55;
+          transform: translateY(-1px);
+        }
+      }
+
+      /* ====== CONTENT LAYER (ABOVE ASCII) ====== */
+      .sazzad-card-content {
+        position: relative;
+        z-index: 2;
+        font-family: "Courier New", monospace;
+      }
+
+      .sazzad-card-chip {
+        width: 40px;
+        height: 28px;
+        border-radius: 4px;
+        border: 1px solid rgba(34, 197, 94, 0.7);
+        background: radial-gradient(circle, #022c22, #16a34a);
+        box-shadow: 0 0 12px rgba(34, 197, 94, 0.6);
+        margin-bottom: 20px;
+      }
+
+      .sazzad-card-number {
+        font-size: 15px;
+        letter-spacing: 0.18em;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        text-shadow: 0 0 6px rgba(34, 197, 94, 0.9);
+        color: #bbf7d0;
+      }
+
+      .sazzad-card-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 10px;
+        text-transform: uppercase;
+        opacity: 0.9;
+        color: #a7f3d0;
+      }
+
+      .sazzad-card-name {
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        margin-top: 8px;
+        text-transform: uppercase;
+        color: #bbf7d0;
+      }
+
+      .sazzad-card-brand {
+        font-weight: 600;
+        font-size: 11px;
+      }
+
+      /* tiny title above number for more “terminal” feel */
+      .sazzad-card-label {
+        font-size: 9px;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        color: #4ade80;
+        margin-bottom: 4px;
+        opacity: 0.8;
+      }
+
+      /* ====== GREEN SCAN LINE ====== */
+      .sazzad-scan-line {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 60px;
+        left: -80px;
+        background: linear-gradient(
+          to right,
+          transparent,
+          rgba(74, 222, 128, 0.3),
+          rgba(34, 197, 94, 0.9),
+          rgba(74, 222, 128, 0.3),
+          transparent
+        );
+        mix-blend-mode: screen;
+        filter: blur(1px);
+        opacity: 0.95;
+        animation: sazzad-scan-move 2.1s linear infinite;
+        z-index: 3;
+      }
+
+      @keyframes sazzad-scan-move {
+        0% {
+          left: -80px;
+        }
+        100% {
+          left: 340px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sazzad-card-wrapper">
+      <div class="sazzad-card">
+        <!-- ASCII terminal noise -->
+        <pre class="sazzad-ascii-overlay">
+            [S A Z Z A D   T E R M I N A L]
+            $ boot --learning-mode=ON
+
+            // PROGRESS LOG:
+            skill++;
+            confidence++;
+            curiosity++;
+            daily_effort += 1;
+
+            // MESSAGE TO YOU:
+            "Every line you write makes you stronger."
+            "Every bug you fix makes you smarter."
+            "You are NOT behind — you're building momentum."
+
+            > Stay consistent.
+            > Keep experimenting.
+            > Your future self is already proud of you.
+
+            $ follow @craftcodestudio
+            $ new_content --coming_soon=true
+            $ end_transmission
+        </pre>
+
+
+        <!-- GREEN scan line -->
+        <div class="sazzad-scan-line"></div>
+
+        <!-- actual card info -->
+        <div class="sazzad-card-content">
+          <div class="sazzad-card-chip"></div>
+
+          <div class="sazzad-card-label">S A Z Z A D &nbsp; C O D E</div>
+          <div class="sazzad-card-number">1234 5678 9012 3456</div>
+
+          <div class="sazzad-card-row">
+            <div>
+              <div>VALID THRU</div>
+              <div>12 / 28</div>
+            </div>
+            <div class="sazzad-card-brand">SAZZAD TERM</div>
+          </div>
+
+          <div class="sazzad-card-name">SAZZAD ALI</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
