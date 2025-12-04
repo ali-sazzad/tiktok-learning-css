@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sazzad 3D Floating Window Counter</title>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #101632, #040614);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "SF Mono", Consolas, monospace;
+      color: #e5e7eb;
+    }
+
+    .floating-window {
+      position: relative;
+      padding: 24px 32px;
+      border-radius: 18px;
+      background: rgba(5, 10, 25, 0.96);
+      border: 1px solid rgba(0, 255, 204, 0.4);
+      box-shadow:
+        0 18px 35px rgba(0, 0, 0, 0.8),
+        0 0 30px rgba(0, 255, 204, 0.25);
+      transform: perspective(900px) rotateX(12deg) rotateY(-10deg) translateY(-6px);
+      transform-origin: center;
+      backdrop-filter: blur(10px);
+      display: inline-block;
+      min-width: 260px;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .floating-window::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      border: 1px solid rgba(0, 255, 204, 0.18);
+      pointer-events: none;
+      mix-blend-mode: screen;
+    }
+
+    .window-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #9ca3af;
+    }
+
+    .window-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: #f87171;
+      box-shadow: 0 0 8px rgba(248, 113, 113, 0.9);
+    }
+
+    .window-dot:nth-child(2) {
+      background: #fbbf24;
+      box-shadow: 0 0 8px rgba(251, 191, 36, 0.9);
+    }
+
+    .window-dot:nth-child(3) {
+      background: #22c55e;
+      box-shadow: 0 0 8px rgba(34, 197, 94, 0.9);
+    }
+
+    .window-title {
+      margin-left: 4px;
+      opacity: 0.85;
+    }
+
+    .window-body {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .window-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #6b7280;
+    }
+
+    .random-counter {
+      padding: 14px 22px;
+      border-radius: 12px;
+      background: radial-gradient(circle at top, rgba(8, 47, 73, 0.7), rgba(15, 23, 42, 0.9));
+      border: 1px solid rgba(0, 255, 204, 0.4);
+      box-shadow: 0 0 18px rgba(0, 255, 204, 0.25);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #randomNumber {
+      font-size: 34px;
+      color: #00ffcc;
+      letter-spacing: 0.18em;
+      text-shadow: 0 0 12px rgba(0, 255, 204, 0.8);
+      animation: flicker 0.4s infinite alternate;
+    }
+
+    @keyframes flicker {
+      from {
+        opacity: 0.78;
+        transform: translateY(0);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(-1px);
+      }
+    }
+
+    @keyframes float {
+      0% {
+        transform: perspective(900px) rotateX(12deg) rotateY(-10deg) translateY(-6px);
+      }
+      50% {
+        transform: perspective(900px) rotateX(10deg) rotateY(-6deg) translateY(-1px);
+      }
+      100% {
+        transform: perspective(900px) rotateX(12deg) rotateY(-10deg) translateY(-6px);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="floating-window">
+    <div class="window-header">
+      <div class="window-dot"></div>
+      <div class="window-dot"></div>
+      <div class="window-dot"></div>
+      <span class="window-title">SAZZAD-SECURE-COUNTER.LOG</span>
+    </div>
+
+    <div class="window-body">
+      <span class="window-label">RANDOM SESSION ID</span>
+
+      <div class="random-counter">
+        <span id="randomNumber">0000</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const MIN = 1000;
+    const MAX = 9999;
+    const SPEED = 80;
+
+    const el = document.getElementById("randomNumber");
+
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function updateRandom() {
+      const n = getRandomInt(MIN, MAX);
+      el.textContent = n.toString().padStart(4, "0");
+    }
+
+    setInterval(updateRandom, SPEED);
+    updateRandom();
+  </script>
+
+</body>
+</html>
