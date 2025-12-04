@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Glitch Anime Hacker Card - Sazzad</title>
+    <style>
+      /* ====== RESET ====== */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: radial-gradient(circle at top, #020617, #020016 60%);
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        color: #f9fafb;
+      }
+
+      .sazzad-card-wrapper {
+        padding: 20px;
+      }
+
+      /* ====== MAIN CARD ====== */
+      .sazzad-anime-card {
+        position: relative;
+        width: 320px;
+        height: 200px;
+        border-radius: 16px;
+        padding: 18px;
+        overflow: hidden;
+        background: linear-gradient(
+          135deg,
+          #020617 0%,
+          #1d0835 40%,
+          #5b21ff 100%
+        );
+        border: 1px solid rgba(244, 114, 182, 0.7);
+        box-shadow: 0 0 35px rgba(129, 140, 248, 0.7);
+      }
+
+      /* soft glow frame */
+      .sazzad-anime-card::before {
+        content: "";
+        position: absolute;
+        inset: -2px;
+        border-radius: 18px;
+        background: conic-gradient(
+          from 140deg,
+          rgba(244, 114, 182, 0.9),
+          rgba(56, 189, 248, 0.8),
+          rgba(147, 51, 234, 0.9),
+          rgba(244, 114, 182, 0.9)
+        );
+        opacity: 0.45;
+        mix-blend-mode: screen;
+        z-index: -1;
+        filter: blur(4px);
+      }
+
+      /* ====== ASCII OVERLAY – ANIME HACKER TEXT ====== */
+      .sazzad-ascii-overlay {
+        position: absolute;
+        inset: 0;
+        padding: 10px;
+        font-family: "Courier New", monospace;
+        font-size: 9px;
+        line-height: 1.1;
+        color: rgba(248, 250, 252, 0.25);
+        white-space: pre;
+        pointer-events: none;
+        mix-blend-mode: screen;
+        opacity: 0.75;
+        animation: sazzad-ascii-float 2.2s infinite alternate;
+      }
+
+      @keyframes sazzad-ascii-float {
+        0% {
+          opacity: 0.4;
+          transform: translateY(0);
+        }
+        100% {
+          opacity: 0.8;
+          transform: translateY(-3px);
+        }
+      }
+
+      /* ====== CONTENT LAYER ====== */
+      .sazzad-card-content {
+        position: relative;
+        z-index: 2;
+        font-family: "Courier New", monospace;
+      }
+
+      .sazzad-chip {
+        width: 42px;
+        height: 30px;
+        border-radius: 6px;
+        background: radial-gradient(circle at 20% 20%, #fde68a, #f97316);
+        box-shadow: 0 0 12px rgba(251, 191, 36, 0.9);
+        margin-bottom: 18px;
+      }
+
+      /* GLITCH TITLE TEXT */
+      .sazzad-glitch-text {
+        position: relative;
+        display: inline-block;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.25em;
+        color: #e5e7eb;
+        margin-bottom: 6px;
+      }
+
+      .sazzad-glitch-text::before,
+      .sazzad-glitch-text::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        overflow: hidden;
+        clip-path: inset(0 0 50% 0);
+      }
+
+      .sazzad-glitch-text::before {
+        left: -1px;
+        text-shadow: -1px 0 #22d3ee;
+        animation: sazzad-glitch-1 1.1s infinite linear alternate-reverse;
+      }
+
+      .sazzad-glitch-text::after {
+        left: 1px;
+        text-shadow: 1px 0 #f472b6;
+        animation: sazzad-glitch-2 0.9s infinite linear alternate-reverse;
+      }
+
+      @keyframes sazzad-glitch-1 {
+        0% {
+          clip-path: inset(0 0 60% 0);
+          transform: translate(0, 0);
+        }
+        20% {
+          clip-path: inset(20% 0 40% 0);
+          transform: translate(-1px, -1px);
+        }
+        40% {
+          clip-path: inset(40% 0 20% 0);
+          transform: translate(1px, 1px);
+        }
+        60% {
+          clip-path: inset(10% 0 50% 0);
+          transform: translate(0, -1px);
+        }
+        80% {
+          clip-path: inset(30% 0 30% 0);
+          transform: translate(-1px, 0);
+        }
+        100% {
+          clip-path: inset(0 0 60% 0);
+          transform: translate(0, 0);
+        }
+      }
+
+      @keyframes sazzad-glitch-2 {
+        0% {
+          clip-path: inset(50% 0 0 0);
+          transform: translate(0, 0);
+        }
+        20% {
+          clip-path: inset(40% 0 10% 0);
+          transform: translate(1px, 1px);
+        }
+        40% {
+          clip-path: inset(30% 0 20% 0);
+          transform: translate(-1px, 0);
+        }
+        60% {
+          clip-path: inset(60% 0 0 0);
+          transform: translate(0, 1px);
+        }
+        80% {
+          clip-path: inset(35% 0 5% 0);
+          transform: translate(1px, -1px);
+        }
+        100% {
+          clip-path: inset(50% 0 0 0);
+          transform: translate(0, 0);
+        }
+      }
+
+      .sazzad-card-number {
+        font-size: 16px;
+        letter-spacing: 0.18em;
+        margin-bottom: 12px;
+        color: #f9fafb;
+        text-shadow: 0 0 8px rgba(129, 140, 248, 0.9);
+      }
+
+      .sazzad-card-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 11px;
+        text-transform: uppercase;
+        color: #e5e7eb;
+        opacity: 0.9;
+      }
+
+      .sazzad-card-name {
+        font-size: 11px;
+        letter-spacing: 0.22em;
+        margin-top: 10px;
+        text-transform: uppercase;
+        color: #fee2e2;
+      }
+
+      .sazzad-brand {
+        font-size: 12px;
+        font-weight: 600;
+        color: #f9a8d4;
+      }
+
+      /* ====== ANIME-STYLE SCAN LINE ====== */
+      .sazzad-scan-line {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 70px;
+        left: -90px;
+        background: linear-gradient(
+          to right,
+          transparent,
+          rgba(56, 189, 248, 0.4),
+          rgba(244, 114, 182, 0.95),
+          rgba(56, 189, 248, 0.4),
+          transparent
+        );
+        mix-blend-mode: screen;
+        filter: blur(2px);
+        opacity: 1;
+        animation: sazzad-scan 1.8s linear infinite;
+        z-index: 3;
+      }
+
+      @keyframes sazzad-scan {
+        0% {
+          left: -90px;
+        }
+        100% {
+          left: 350px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sazzad-card-wrapper">
+      <div class="sazzad-anime-card">
+        <!-- ASCII anime / hacker text overlay -->
+        <pre class="sazzad-ascii-overlay">
+[ C R A F T C O D E   S T U D I O ]
+$ mode = "ANIME_HACKER";
+$ viewer.rank++;
+
+あなたの一行のコード = 
+  未来のあなただけのスキル。
+
+// DAILY BOOST:
+focus++;
+xp++;
+debug_skill++;
+
+// REMEMBER:
+"Perfect code doesn't exist.
+  Persistent coders do."
+
+$ stay_tuned --channel="@craftcodestudio";
+$ next_episode --loading...
+        </pre>
+
+        <!-- glitchy anime scan line -->
+        <div class="sazzad-scan-line"></div>
+
+        <!-- actual card content -->
+        <div class="sazzad-card-content">
+          <div class="sazzad-chip"></div>
+
+          <div
+            class="sazzad-glitch-text"
+            data-text="SAZZAD // ANIME HACKER"
+          >
+            SAZZAD // TOP HACKER
+          </div>
+
+          <div class="sazzad-card-number">1234 5678 9012 3456</div>
+
+          <div class="sazzad-card-row">
+            <div>
+              <div>LEVEL</div>
+              <div>PRO → MASTER</div>
+            </div>
+            <div class="sazzad-brand">CRAFTCODE STUDIO ∽</div>
+          </div>
+
+          <div class="sazzad-card-name">SAZZAD ALI</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
