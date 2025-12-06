@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Split Glow Action Button</title>
+    <style>
+        .sazzad-split-btn {
+  position: relative;
+  width: 180px;
+  height: 55px;
+  border: none;
+  cursor: pointer;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #0a0a0a;
+  color: white;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 0.5px;
+  transition: 0.3s ease-in-out;
+}
+
+.sazzad-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+  transition: 0.35s ease;
+}
+
+.sazzad-left,
+.sazzad-right {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(100%);
+  transition: 0.45s ease;
+  font-size: 0.9rem;
+  z-index: 2;
+}
+
+.sazzad-left {
+  left: 0;
+  background: linear-gradient(135deg, #00e0ff, #0077ff);
+}
+
+.sazzad-right {
+  right: 0;
+  background: linear-gradient(135deg, #ff0077, #ff4d00);
+}
+
+.sazzad-split-btn:hover .sazzad-label {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+.sazzad-split-btn:hover .sazzad-left {
+  transform: translateY(0);
+}
+
+.sazzad-split-btn:hover .sazzad-right {
+  transform: translateY(0);
+}
+
+.sazzad-split-btn:hover {
+  box-shadow: 0 0 18px #00e0ff80, 0 0 18px #ff007780;
+}
+
+    </style>
+</head>
+<body>
+    <!-- By sazzad-ali -->
+<button class="sazzad-split-btn">
+  <span class="sazzad-left">Download</span>
+  <span class="sazzad-right">Open</span>
+  <span class="sazzad-label">Click</span>
+</button>
+
+</body>
+</html>
