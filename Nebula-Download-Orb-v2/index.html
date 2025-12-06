@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Split Download / Open Slider</title>
+    <style>
+        /* From Uiverse.io by ali-sazzad – Split Download/Open Slider */
+.ali-split-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+.ali-split-toggle {
+  cursor: pointer;
+  display: inline-flex;
+}
+
+.ali-split-input {
+  display: none;
+}
+
+.ali-split-track {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  background:
+    radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.25), transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(129, 140, 248, 0.25), transparent 55%),
+    #020617;
+  box-shadow:
+    0 0 0 1px rgba(15, 23, 42, 0.9),
+    0 0 24px rgba(56, 189, 248, 0.35);
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.25s ease;
+}
+
+.ali-split-toggle:hover .ali-split-track {
+  transform: translateY(-1px);
+  box-shadow:
+    0 0 0 1px rgba(56, 189, 248, 0.8),
+    0 0 34px rgba(56, 189, 248, 0.55);
+}
+
+.ali-split-panel {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  color: #e5e7eb;
+  transition:
+    flex-basis 0.4s cubic-bezier(0.22, 0.61, 0.36, 1),
+    padding 0.4s cubic-bezier(0.22, 0.61, 0.36, 1),
+    color 0.4s ease,
+    transform 0.4s ease,
+    opacity 0.3s ease;
+}
+
+.ali-split-panel-left {
+  flex-basis: 100px;
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.3),
+    rgba(37, 99, 235, 0.05)
+  );
+}
+
+.ali-split-panel-right {
+  flex-basis: 0;
+  padding-inline: 0;
+  opacity: 0;
+  transform: translateX(12px);
+  color: #bbf7d0;
+}
+
+.ali-split-label {
+  letter-spacing: 0.02em;
+}
+
+.ali-split-label-alt {
+  font-size: 12px;
+}
+
+/* Icons */
+
+.ali-split-arrow,
+.ali-split-open-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.ali-split-arrow {
+  color: #bfdbfe;
+}
+
+.ali-split-open-icon {
+  color: #bbf7d0;
+  transform-origin: center;
+  transform: scale(0.7) rotate(-8deg);
+}
+
+/* Glow */
+
+.ali-split-glow {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  background:
+    radial-gradient(circle at 0% 50%, rgba(56, 189, 248, 0.35), transparent 55%),
+    radial-gradient(circle at 100% 50%, rgba(34, 197, 94, 0.3), transparent 55%);
+  mix-blend-mode: screen;
+  transition: opacity 0.4s ease;
+}
+
+/* Checked state */
+
+.ali-split-input:checked + .ali-split-track .ali-split-panel-left {
+  flex-basis: 0;
+  padding-inline: 0;
+  opacity: 0;
+  transform: translateX(-12px);
+}
+
+.ali-split-input:checked + .ali-split-track .ali-split-panel-right {
+  flex-basis: 120px;
+  padding-inline: 16px;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.ali-split-input:checked + .ali-split-track .ali-split-open-icon {
+  animation: ali-split-open-pop 0.36s ease-out 0.15s both;
+}
+
+.ali-split-input:checked + .ali-split-track .ali-split-glow {
+  opacity: 1;
+}
+
+.ali-split-input:checked + .ali-split-track {
+  transform: translateY(0);
+}
+
+/* Keyframes */
+
+@keyframes ali-split-open-pop {
+  0% {
+    transform: scale(0.4) rotate(-18deg);
+  }
+  60% {
+    transform: scale(1.1) rotate(3deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+    </style>
+</head>
+<body>
+    <!-- By ali-sazzad -->
+<div class="ali-split-wrapper">
+  <label class="ali-split-toggle">
+    <input type="checkbox" class="ali-split-input" />
+
+    <span class="ali-split-track">
+      <span class="ali-split-panel ali-split-panel-left">
+        <span class="ali-split-label">Download</span>
+        <svg
+          class="ali-split-arrow"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            d="M12 3v14m0 0-4-4m4 4 4-4"
+          />
+        </svg>
+      </span>
+
+      <span class="ali-split-panel ali-split-panel-right">
+        <svg
+          class="ali-split-open-icon"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            d="M9 5h10m0 0v10m0-10L9 15M7 9v10"
+          />
+        </svg>
+        <span class="ali-split-label ali-split-label-alt">Open file</span>
+      </span>
+
+      <span class="ali-split-glow"></span>
+    </span>
+  </label>
+</div>
+
+</body>
+</html>
