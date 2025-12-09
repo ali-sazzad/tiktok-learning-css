@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurora Phone Theme Toggle</title>
+    <style>
+        html, body {
+            
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+        }    
+    
+    /* Layout wrapper (optional) */
+.theme-app {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at top, #ffe1f0, #f3f4ff);
+  transition: background 0.5s ease;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Segoe UI", sans-serif;
+}
+
+/* Hide checkbox */
+.theme-checkbox {
+  display: none;
+}
+
+/* Phone shell */
+.theme-shell {
+  padding: 1.5rem;
+  border-radius: 2.5rem;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.16);
+  backdrop-filter: blur(16px);
+}
+
+.theme-phone {
+  width: 18rem;
+  height: 18rem;
+  border-radius: 1.8rem;
+  background: #fdfdfd;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: background 0.5s ease, box-shadow 0.5s ease;
+}
+
+/* Header (top bar) */
+.theme-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem 1.2rem;
+  font-size: 0.8rem;
+  opacity: 0.6;
+  color: #111827;
+}
+
+.theme-status {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.theme-battery {
+  width: 0.9rem;
+  height: 0.45rem;
+  border-radius: 2px;
+  background: #111827;
+}
+
+.theme-signal {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 6px 7px 6px;
+  border-color: transparent transparent #111827 transparent;
+  transform: rotate(135deg);
+}
+
+/* Phone body */
+.theme-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.7rem;
+}
+
+/* Orbit (sun/moon) */
+.theme-orbit {
+  position: relative;
+  width: 7rem;
+  height: 7rem;
+  border-radius: 999px;
+  background: radial-gradient(circle at 20% 0%, #ffe89a, #ff8f8f 70%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(249, 115, 22, 0.45);
+  transition: background 0.6s ease, box-shadow 0.6s ease;
+}
+
+.theme-sun,
+.theme-moon {
+  position: absolute;
+  width: 3.4rem;
+  height: 3.4rem;
+  border-radius: 999px;
+  transition: transform 0.6s ease, opacity 0.6s ease, background 0.6s ease;
+}
+
+/* Sun */
+.theme-sun {
+  background: radial-gradient(circle at 30% 20%, #fffbe6, #facc15);
+  transform: translateX(-0.3rem);
+}
+
+/* Moon */
+.theme-moon {
+  background: #111827;
+  box-shadow: inset -6px -4px 0 rgba(55, 65, 81, 0.9);
+  transform: translateX(2.8rem);
+  opacity: 0;
+}
+
+/* Toggle track */
+.theme-toggle-track {
+  width: 70%;
+  height: 2.6rem;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.08);
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+/* Labels inside toggle */
+.theme-toggle-labels {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  user-select: none;
+}
+
+.theme-label {
+  opacity: 0.6;
+  transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+.theme-label-light {
+  color: #111827;
+}
+
+.theme-label-dark {
+  color: #6b7280;
+}
+
+/* Knob */
+.theme-toggle-knob {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
+  transform: translateX(0);
+  transition: transform 0.3s ease;
+}
+
+/* ---------- CHECKED STATE ---------- */
+
+/* Knob slides right */
+#switch:checked + .theme-app .theme-toggle-knob {
+  transform: translateX(100%);
+  background: #111827;
+}
+
+/* Label emphasis */
+#switch:checked + .theme-app .theme-label-light {
+  opacity: 0.4;
+  color: #9ca3af;
+}
+
+#switch:checked + .theme-app .theme-label-dark {
+  opacity: 1;
+  color: #e5e7eb;
+}
+
+/* Backgrounds transition to night */
+#switch:checked + .theme-app {
+  background: radial-gradient(circle at top, #18181b, #020617);
+}
+
+#switch:checked + .theme-app .theme-phone {
+  background: #111827;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.8);
+}
+
+/* Orbit turns aurora-ish */
+#switch:checked + .theme-app .theme-orbit {
+  background: radial-gradient(circle at 20% 0%, #6366f1, #22d3ee 65%);
+  box-shadow: 0 10px 26px rgba(79, 70, 229, 0.7);
+}
+
+/* Sun -> slide out, Moon -> slide in */
+#switch:checked + .theme-app .theme-sun {
+  transform: translateX(-2.8rem);
+  opacity: 0;
+}
+
+#switch:checked + .theme-app .theme-moon {
+  transform: translateX(0.2rem);
+  opacity: 1;
+}
+
+/* Header colors night mode */
+#switch:checked + .theme-app .theme-header {
+  color: #e5e7eb;
+}
+
+#switch:checked + .theme-app .theme-battery {
+  background: #e5e7eb;
+}
+
+#switch:checked + .theme-app .theme-signal {
+  border-color: transparent transparent #e5e7eb transparent;
+}
+</style>
+</head>
+<body>
+    <input id="switch" type="checkbox" class="theme-checkbox">
+
+<div class="theme-app">
+  <div class="theme-shell">
+    <div class="theme-phone">
+      <div class="theme-header">
+        <span class="theme-time">4:20</span>
+        <span class="theme-time">@craftcodestudio</span>
+        <div class="theme-status">
+          <span class="theme-signal"></span>
+          <span class="theme-battery"></span>
+        </div>
+      </div>
+
+      <div class="theme-body">
+        <div class="theme-orbit">
+          <div class="theme-sun"></div>
+          <div class="theme-moon"></div>
+        </div>
+
+        <label for="switch" class="theme-toggle-track">
+          <div class="theme-toggle-knob"></div>
+          <div class="theme-toggle-labels">
+            <span class="theme-label theme-label-light">Light</span>
+            <span class="theme-label theme-label-dark">Dark</span>
+          </div>
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
