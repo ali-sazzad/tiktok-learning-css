@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrix Ring Loader</title>
+    <style>
+    .matrix-rings-loader {
+        width: 180px;
+        height: 180px;
+        margin: 40px auto;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: radial-gradient(circle at center, #020912 0%, #000 60%);
+        border-radius: 16px;
+        overflow: hidden;
+    }
+
+    /* Common ring styles */
+    .ring {
+        position: absolute;
+        border-radius: 50%;
+        border: 1px solid rgba(0, 255, 136, 0.2);
+        box-shadow: 0 0 12px rgba(0, 255, 136, 0.3) inset;
+        filter: drop-shadow(0 0 6px rgba(0, 255, 136, 0.6));
+        transform-style: preserve-3d;
+    }
+
+    /* Ring sizes + spin */
+    .ring-outer {
+        width: 140px;
+        height: 140px;
+        animation: ring-spin 6s linear infinite;
+    }
+
+    .ring-middle {
+        width: 100px;
+        height: 100px;
+        animation: ring-spin 4s linear infinite reverse;
+    }
+
+    .ring-inner {
+        width: 60px;
+        height: 60px;
+        animation: ring-spin 3s linear infinite;
+    }
+
+    /* Digits around each ring */
+    .ring span {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform-origin: center;
+        font-family: monospace;
+        font-size: 14px;
+        color: #00ff88;
+        text-shadow: 0 0 8px #00ff88;
+        animation: digit-flicker 1s infinite alternate;
+    }
+
+    /* OUTER ring positions */
+    .ring-outer span:nth-child(1) { transform: rotate(0deg) translateY(-60px); }
+    .ring-outer span:nth-child(2) { transform: rotate(45deg) translateY(-60px); }
+    .ring-outer span:nth-child(3) { transform: rotate(90deg) translateY(-60px); }
+    .ring-outer span:nth-child(4) { transform: rotate(135deg) translateY(-60px); }
+    .ring-outer span:nth-child(5) { transform: rotate(180deg) translateY(-60px); }
+    .ring-outer span:nth-child(6) { transform: rotate(225deg) translateY(-60px); }
+    .ring-outer span:nth-child(7) { transform: rotate(270deg) translateY(-60px); }
+    .ring-outer span:nth-child(8) { transform: rotate(315deg) translateY(-60px); }
+    /* MIDDLE ring positions */
+    .ring-middle span:nth-child(1) { transform: rotate(0deg) translateY(-42px); }
+    .ring-middle span:nth-child(2) { transform: rotate(45deg) translateY(-42px); }
+    .ring-middle span:nth-child(3) { transform: rotate(90deg) translateY(-42px); }
+    .ring-middle span:nth-child(4) { transform: rotate(135deg) translateY(-42px); }
+    .ring-middle span:nth-child(5) { transform: rotate(180deg) translateY(-42px); }
+    .ring-middle span:nth-child(6) { transform: rotate(225deg) translateY(-42px); }
+    .ring-middle span:nth-child(7) { transform: rotate(270deg) translateY(-42px); }
+    .ring-middle span:nth-child(8) { transform: rotate(315deg) translateY(-42px); }
+    /* INNER ring positions */
+    .ring-inner span:nth-child(1) { transform: rotate(0deg) translateY(-26px); }
+    .ring-inner span:nth-child(2) { transform: rotate(45deg) translateY(-26px); }
+    .ring-inner span:nth-child(3) { transform: rotate(90deg) translateY(-26px); }
+    .ring-inner span:nth-child(4) { transform: rotate(135deg) translateY(-26px); }
+    .ring-inner span:nth-child(5) { transform: rotate(180deg) translateY(-26px); }
+    .ring-inner span:nth-child(6) { transform: rotate(225deg) translateY(-26px); }
+    .ring-inner span:nth-child(7) { transform: rotate(270deg) translateY(-26px); }
+    .ring-inner span:nth-child(8) { transform: rotate(315deg) translateY(-26px); }
+
+    /* Core glow */
+    .matrix-core {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: radial-gradient(circle, #00ff88 0%, #001f17 70%);
+        box-shadow:
+                0 0 8px rgba(0, 255, 136, 0.9),
+                0 0 16px rgba(0, 255, 136, 0.8),
+                0 0 28px rgba(0, 255, 136, 0.7);
+        animation: core-pulse 1.4s ease-in-out infinite;
+    }
+
+    /* Animations */
+    @keyframes ring-spin {
+      0%   { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes digit-flicker {
+      0%, 100% {
+        opacity: 0.9;
+        text-shadow: 0 0 8px #00ff88;
+      }
+      40% {
+        opacity: 0.3;
+        text-shadow: 0 0 2px #00ff88;
+      }
+      60% {
+        opacity: 0.6;
+      }
+    }
+
+    @keyframes core-pulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 0.9;
+      }
+      50% {
+        transform: scale(1.2);
+        opacity: 1;
+      }
+    }
+
+    </style>
+</head>
+<body>
+    <div class="matrix-rings-loader">
+        <div class="ring ring-outer">
+            <span>0</span>
+            <span>1</span>
+            <span>0</span>
+            <span>1</span>
+            <span>1</span>
+            <span>0</span>
+            <span>1</span>
+            <span>0</span>
+        </div>
+
+        <div class="ring ring-middle">
+            <span>1</span>
+            <span>0</span>
+            <span>1</span>
+            <span>0</span>
+            <span>0</span>
+            <span>1</span>
+            <span>0</span>
+            <span>1</span>
+        </div>
+
+        <div class="ring ring-inner">
+            <span>0</span>
+            <span>0</span>
+            <span>1</span>
+            <span>1</span>
+            <span>0</span>
+            <span>1</span>
+            <span>1</span>
+            <span>0</span>
+        </div>
+        <div class="matrix-core"></div>
+    </div>
+
+</body>
+</html>
