@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hamburger Toggle Button</title>
+    <style>
+        html, body {
+            
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+        }
+
+        .toggle-box {
+  width: 70px;
+  height: 60px;
+  position: relative;
+}
+
+.toggle-trigger {
+  display: none;
+}
+
+.menu-toggle {
+  width: 70px;
+  height: 60px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.bar {
+  width: 70px;
+  height: 6px;
+  background: #ffffff;
+  border-radius: 4px;
+  transition: 0.35s ease;
+  position: relative;
+}
+
+/* Middle bar unique slide out */
+.bar2 {
+  transition:
+    transform 0.35s ease,
+    opacity 0.35s ease;
+}
+
+/* Pulse ring */
+.pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0px;
+  height: 0px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  opacity: 0;
+  transition: 0.45s ease;
+}
+
+/* --- ACTIVE (checked) animations --- */
+
+#toggle-trigger:checked + .menu-toggle .bar1 {
+  transform: translateY(18px) rotate(45deg);
+  width: 70px;
+}
+
+#toggle-trigger:checked + .menu-toggle .bar3 {
+  transform: translateY(-18px) rotate(-45deg);
+  width: 70px;
+}
+
+/* Middle bar disappears + slides right */
+#toggle-trigger:checked + .menu-toggle .bar2 {
+  transform: translateX(25px);
+  opacity: 0;
+}
+
+/* Pulse ring expands */
+#toggle-trigger:checked + .menu-toggle .pulse {
+  width: 90px;
+  height: 90px;
+  opacity: 1;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+    </style>
+</head>
+<body style="            background-color: rgb(0, 0, 0);
+">
+    <div class="toggle-box">
+  <input type="checkbox" id="toggle-trigger" class="toggle-trigger" />
+  <label for="toggle-trigger" class="menu-toggle">
+    <span class="bar bar1"></span>
+    <span class="bar bar2"></span>
+    <span class="bar bar3"></span>
+    <span class="pulse"></span>
+  </label>
+</div>
+
+</body>
+</html>
