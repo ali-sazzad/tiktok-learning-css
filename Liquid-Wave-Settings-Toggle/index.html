@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liquid Wave Settings Toggle</title>
+    <style>
+        html, body {
+            
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+        }
+
+.wave-settings-btn {
+  width: 100px;
+  height: 100px;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  background: radial-gradient(circle at 20% 0%, #8000ff, #00f7ff);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  box-shadow:
+    0 0 0 2px #dcd6ff,
+    0 10px 20px rgba(31, 41, 55, 0.3);
+  padding: 0;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.3s ease;
+}
+
+/* Base bars */
+.wave-bar {
+  width: 90%;
+  height: 5px;
+  border-radius: 999px;
+  position: relative;
+  overflow: hidden;
+  background: rgba(243, 244, 246, 0.45);
+}
+
+/* Track (subtle) */
+.wave-bar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.1)
+  );
+}
+
+/* Liquid wave chunk */
+.wave-bar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 90%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.9),
+    rgba(0, 68, 255, 0.9)
+  );
+  border-radius: 999px;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.85);
+  transform: translateX(-130%);
+  transition: transform 0.45s ease;
+}
+
+/* Slight offset widths for variation */
+.wb1 {
+  width: 58%;
+}
+.wb2 {
+  width: 68%;
+}
+.wb3 {
+  width: 54%;
+}
+
+/* Hover: button lift + soft glow */
+.wave-settings-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow:
+    0 0 0 2px #e2ddff,
+    0 14px 26px rgba(15, 23, 42, 0.4);
+  background: radial-gradient(circle at 80% 0%, #ff5e00, #7c0076);
+}
+
+/* Hover: liquid waves slide across with stagger */
+.wave-settings-btn:hover .wb1::after {
+  transform: translateX(130%);
+  transition-delay: 0s;
+}
+
+.wave-settings-btn:hover .wb2::after {
+  transform: translateX(130%);
+  transition-delay: 0.06s;
+}
+
+.wave-settings-btn:hover .wb3::after {
+  transform: translateX(130%);
+  transition-delay: 0.12s;
+}
+
+    </style>
+</head>
+<body style="background-color: rgb(0, 0, 0);">
+   <button class="wave-settings-btn">
+  <span class="wave-bar wb1"></span>
+  <span class="wave-bar wb2"></span>
+  <span class="wave-bar wb3"></span>
+</button>
+
+</body>
+</html>
