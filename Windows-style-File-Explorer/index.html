@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows-style File Explorer</title>
+    <style>
+    
+
+    body {
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      color: var(--text-main);
+      background: radial-gradient(circle at top, #1e293b 0, #020617 60%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 16px;
+      overflow: hidden;
+    }
+    
+        .win-launcher {
+  position: relative;
+  width: 5.2em;
+  height: 5.2em;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.6em;
+  background: rgba(237, 244, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.18);
+  padding: 0;
+}
+
+/* Icon container */
+.win-icon {
+  position: relative;
+  width: 3em;
+  height: 2.5em;
+}
+
+/* Folder base */
+.win-folder-base {
+  position: absolute;
+  inset: 0.6em 0 0 0;
+  border-radius: 0.25em;
+  background: linear-gradient(180deg, #ffd64d, #f9b733);
+}
+
+/* Folder tab */
+.win-folder-tab {
+  position: absolute;
+  left: 0.2em;
+  top: 0.25em;
+  width: 1.4em;
+  height: 0.55em;
+  border-radius: 0.3em 0.3em 0.1em 0.1em;
+  background: #f3c13b;
+}
+
+/* Paper/document */
+.win-folder-paper {
+  position: absolute;
+  right: 0.4em;
+  top: 0.7em;
+  width: 1.4em;
+  height: 1.2em;
+  border-radius: 0.18em;
+  background: #ffffff;
+  box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.08);
+  overflow: hidden;
+}
+
+.win-folder-paper::before,
+.win-folder-paper::after {
+  content: "";
+  position: absolute;
+  left: 0.25em;
+  right: 0.25em;
+  height: 0.12em;
+  border-radius: 999px;
+  background: #2563eb;
+}
+
+.win-folder-paper::before {
+  top: 0.25em;
+}
+.win-folder-paper::after {
+  top: 0.6em;
+}
+
+/* Active line */
+.win-active-line {
+  position: absolute;
+  bottom: 0.55em;
+  width: 0.8em;
+  height: 0.25em;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.9);
+  transition: width 0.18s ease, background 0.18s ease;
+}
+
+/* Tooltip text */
+.win-tooltip {
+  position: absolute;
+  top: -2.7em;
+  padding: 0.35em 0.7em;
+  background: rgba(15, 23, 42, 0.9);
+  color: #f9fafb;
+  font-size: 0.7rem;
+  border-radius: 0.4em;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(4px);
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+/* Hover + focus states */
+.win-launcher:hover .win-tooltip {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.win-launcher:hover {
+  background: rgba(226, 238, 255, 0.96);
+}
+
+.win-launcher:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+/* Active line grows like Windows taskbar */
+.win-launcher:active .win-active-line,
+.win-launcher:focus .win-active-line {
+  width: 2.1em;
+  background: #2563eb;
+}
+
+/* Subtle bounce on focus */
+.win-launcher:focus .win-icon {
+  animation: win-bounce 0.7s ease;
+}
+.button:focus .container {
+  animation: win-bounce 0.42s cubic-bezier(.34,.97,.62,1.33);
+}
+
+@keyframes win-bounce {
+  0%   { transform: translateY(0) scale(1); }
+  40%  { transform: translateY(-6px) scale(1.05); }
+  70%  { transform: translateY(3px) scale(0.98); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+@keyframes win-bounce {
+  0%   { transform: translateY(0); }
+  40%  { transform: translateY(-10px); }
+  70%  { transform: translateY(8px); }
+  100% { transform: translateY(0); }
+}
+
+    </style>
+</head>
+<body>
+    <button class="win-launcher">
+  <div class="win-icon">
+    <div class="win-folder-base"></div>
+    <div class="win-folder-tab"></div>
+    <div class="win-folder-paper"></div>
+  </div>
+  <div class="win-active-line"></div>
+  <span class="win-tooltip">File Explorer</span>
+</button>
+
+</body>
+</html>
