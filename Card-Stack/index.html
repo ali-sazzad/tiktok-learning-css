@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Stack</title>
+    <style>
+  *{box-sizing:border-box} body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0b0f14;font-family:system-ui}
+  .ccs-wrap{display:flex;gap:22px;align-items:flex-end;padding:24px;flex-wrap:wrap;justify-content:center}
+
+  .ccs-card{
+    width:220px; height:310px; padding:18px 16px;
+    border-radius:18px; position:relative; overflow:hidden;
+    box-shadow:0 18px 45px rgba(0,0,0,.35);
+    transform:translateY(8px); transition:.25s ease;
+    cursor:pointer;
+  }
+  .ccs-card h3{margin:140px 0 6px;font-size:26px;letter-spacing:-.5px}
+  .ccs-card p{margin:0;opacity:.85;line-height:1.25;max-width:18ch}
+  .ccs-card::after{
+    content:""; position:absolute; inset:auto 0 0 0; height:110px;
+    background:linear-gradient(to top, rgba(0,0,0,.45), transparent);
+    pointer-events:none;
+  }
+
+  /* tilted “product” image */
+  .ccs-img{
+    position:absolute; top:-34px; right:18px;
+    width:120px; height:220px; object-fit:cover;
+    border-radius:14px;
+    transform:rotate(-18deg) translateY(0);
+    box-shadow:0 25px 45px rgba(0,0,0,.45);
+    transition:.25s ease;
+    filter:saturate(1.1);
+  }
+
+  /* little color chips */
+  .ccs-dots{position:absolute; bottom:14px; right:14px; display:flex; gap:8px}
+  .ccs-dots span{width:18px;height:12px;border-radius:6px;background:#fff;opacity:.9}
+
+  /* hover: lift + focus + image float */
+  .ccs-wrap:hover .ccs-card{opacity:.55; transform:translateY(12px) scale(.98)}
+  .ccs-card:hover{
+    opacity:1; transform:translateY(0) scale(1.03);
+    box-shadow:0 28px 70px rgba(0,0,0,.5);
+  }
+  .ccs-card:hover .ccs-img{transform:rotate(-18deg) translateY(-10px) scale(1.03)}
+
+  /* themes */
+  .ccs-leaf{background:#6f8f73; color:#eef7ef}
+  .ccs-leaf .ccs-dots span:nth-child(1){background:#f7c76b}
+  .ccs-leaf .ccs-dots span:nth-child(2){background:#89d38a}
+  .ccs-leaf .ccs-dots span:nth-child(3){background:#52d6c8}
+
+  .ccs-topo{background:#0f131a; color:#f3f7ff}
+  .ccs-topo .ccs-card{}
+  .ccs-topo::before{
+    content:""; position:absolute; inset:-40%;
+    background:radial-gradient(circle at 30% 20%, rgba(0,255,255,.18), transparent 40%),
+               radial-gradient(circle at 70% 30%, rgba(255,0,255,.14), transparent 45%);
+    filter:blur(14px);
+  }
+  .ccs-topo .ccs-dots span:nth-child(1){background:#2dd4ff}
+  .ccs-topo .ccs-dots span:nth-child(2){background:#ff4fd8}
+  .ccs-topo .ccs-dots span:nth-child(3){background:#38e26d}
+
+  .ccs-panda{background:#ffffff; color:#0e1116}
+  .ccs-panda p{opacity:.75}
+  .ccs-panda .ccs-dots span{background:#111}
+</style>
+</head>
+<body>
+    <!-- CraftCode STUDIO – Card Stack (HTML + CSS only) -->
+<section class="ccs-wrap">
+  <article class="ccs-card ccs-leaf">
+    <img class="ccs-img" src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=900&q=80" alt="">
+    <h3>LeafKey</h3>
+    <p>A keyboard that brings the tranquility of the forest to your fingertips.</p>
+    <div class="ccs-dots">
+      <span></span><span></span><span></span>
+    </div>
+  </article>
+
+  <article class="ccs-card ccs-topo">
+    <img class="ccs-img" src="https://images.unsplash.com/photo-1541140532154-b024d705b90a?w=900&q=80" alt="">
+    <h3>TopoKey</h3>
+    <p>Custom illuminated keyboard with neon topology mapped out in every key.</p>
+    <div class="ccs-dots">
+      <span></span><span></span><span></span>
+    </div>
+  </article>
+
+  <article class="ccs-card ccs-panda">
+    <img class="ccs-img" src="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=900&q=80" alt="">
+    <h3>PandaKey</h3>
+    <p>Panda, panda, panda… (your funny text here)</p>
+    <div class="ccs-dots">
+      <span></span><span></span><span></span>
+    </div>
+  </article>
+</section>
+
+</body>
+</html>
